@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="environment" source="app.env" defaultValue="NotFound"/>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>
+                {"app_env":"${APP_ENV}"}
+            </customFields>
+            <fieldNames>
+                <version>[ignore]</version>
+                <levelValue>[ignore]</levelValue>
+            </fieldNames>
+        </encoder>
+    </appender>
+
+    <logger name="com.poc.evthub" additivity="false" level="DEBUG">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+    <logger name="root" additivity="false" level="INFO">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+    <logger name="org.apache.http" level="DEBUG">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger name="ROOT" level="INFO" additivity="false">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+</configuration>

@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+  - AWS::Serverless-2016-10-31
+
+Resources:
+  EventHubLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: eventhub-serverless
+      Description: Lambda function
+      Handler: com.poc.evthub.handler.KinesisEventHandler
+      CodeUri: target/eventhub-serverless-0.0.1-SNAPSHOT-aws.jar
+      Runtime: java8
+      Timeout: 180
+      MemorySize: 512
+      Role: <role ARN>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] [correlationId=%X{correlationId}] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <logger name="com.poc.evthub" level="INFO"/>
+    <logger name="org.springframework.web.client" level="DEBUG"/>
+    <logger name="org.apache.http" level="DEBUG"/>
+
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="INFO"/>
+    <logger name="org.springframework.boot" level="INFO"/>
+    <logger name="org.springframework.amqp" level="INFO"/>
+    <logger name="org.springframework.web.servlet" level="INFO"/>
+    <logger name="com.netflix.hystrix" level="INFO"/>
+
+        <logger name="ROOT" level="INFO" additivity="false">
+            <appender-ref ref="STDOUT"/>
+        </logger>
+
+    <root level="error">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
